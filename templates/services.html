@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %} Usluge {% endblock %}
+
+{% block head %}
+<style>
+    body {
+        background-color: #001;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border: 2px solid #0056b3;
+        padding: 5px 20px;
+        font-size: 16px;
+        border-radius: 3px;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .table {
+        color: #fff;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #fff;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #007bff;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Usluge</h2>
+
+    <a href="{{ url_for('home') }}" class="return-button btn btn-primary">Početna stranica</a>
+
+    <a href="{{ url_for('new_usluga') }}" class="btn btn-primary mb-3">Dodaj uslugu</a>
+
+    <form class="mb-3" action="{{ url_for('usluge') }}" method="GET">
+        <label for="sort_by">Sortiraj prema:</label>
+        <select name="sort_by" id="sort_by" class="form-select">
+            <option value="name">Naziv</option>
+            <option value="price">Cijena</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Sortiraj</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Cijena</th>
+                <th>Uredi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usluga in usluge %}
+            <tr>
+                <td>{{ usluga.name }}</td>
+                <td>${{ usluga.price }}</td>
+                <td>
+                    <a href="{{ url_for('edit_usluga', usluga_id=usluga.id) }}" class="btn btn-sm btn-primary">Uredi</a>
+                    <form action="{{ url_for('delete_usluga', usluga_id=usluga.id) }}" method="POST"
+                        style="display: inline;">
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Jeste li sigurni da želite obrisati uslugu?')">Izbriši</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

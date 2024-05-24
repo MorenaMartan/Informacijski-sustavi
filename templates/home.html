@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %} CarTrade {% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .jumbotron {
+        background-image: url('https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 0.3rem;
+        box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+        color: #fff;
+    }
+
+    .well {
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid #ddd;
+        border-radius: 0.3rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: #000;
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        color: #007bff;
+        margin-bottom: 2rem;
+    }
+
+    .btn-container {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border: 2px solid #0056b3;
+        padding: 0.5rem 2rem;
+        font-size: 1.25rem;
+        border-radius: 0.3rem;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+        color: #fff;
+    }
+
+    .description {
+        padding: 2rem;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 1px solid #ddd;
+        border-radius: 0.3rem;
+        margin-top: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .description p {
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+</style>
+<div class="jumbotron p-3">
+    <div class="well text-center">
+        <h1>Welcome to SalonSync</h1>
+        <a href="{{ url_for('usluge') }}" class="btn btn-primary">Pogledaj Usluge</a>
+    </div>
+</div>
+
+<div class="description">
+    <p>Dobrodošli na SalonSync,SalonSync je sustav za praćenje cijena i naziva usluga u salonima.</p>
+</div>
+
+{% endblock %}
