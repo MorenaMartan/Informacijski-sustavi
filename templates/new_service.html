@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 style="color: red; font-size: 24px;">Dodaj novu uslugu</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            <label for="name" style="font-weight: bold;">Naziv:</label><br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            <label for="description" style="font-weight: bold;">Opis:</label><br>
+            {{ form.description(rows=4, cols=40) }}<br>
+            {% for error in form.description.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            <label for="price" style="font-weight: bold;">Cijena:</label><br>
+            {{ form.price() }}<br>
+            {% for error in form.price.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p> 
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('index') }}" style="color: #007bff; text-decoration: none;">Povratak na naslovnu</a>
+</div>
+{% endblock %}
